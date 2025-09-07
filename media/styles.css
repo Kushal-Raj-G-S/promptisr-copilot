@@ -1,0 +1,451 @@
+/* styles.css - Enhanced UI for Promptizer sidebar */
+:root {
+  --bg: var(--vscode-editor-background, #1e1e1e);
+  --fg: var(--vscode-editor-foreground, #cccccc);
+  --border: var(--vscode-editorWidget-border, #3c3c3c);
+  --button-bg: var(--vscode-button-background, #0e639c);
+  --button-fg: var(--vscode-button-foreground, #ffffff);
+  --button-hover: var(--vscode-button-hoverBackground, #1177bb);
+  --accent: var(--vscode-focusBorder, #007acc);
+  --success: #4caf50;
+  --warning: #ff9800;
+  --error: #f44336;
+  --card-bg: rgba(255, 255, 255, 0.03);
+  --shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Enhanced responsive design for any sidebar width */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 8px;
+  color: var(--fg);
+  background: var(--bg);
+  font-family: var(--vscode-font-family, 'Segoe UI', system-ui, sans-serif);
+  font-size: 13px;
+  line-height: 1.4;
+  min-width: 0; /* Allow shrinking below content width */
+  overflow-x: hidden; /* Prevent horizontal scroll */
+}
+
+.container { 
+  display: flex; 
+  flex-direction: column; 
+  gap: 12px; 
+  max-width: 100%;
+  min-width: 0; /* Allow shrinking */
+}
+
+h2 { 
+  margin: 0 0 12px 0; 
+  font-size: 18px; 
+  font-weight: 600;
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+h2::before {
+  content: "⚡";
+  font-size: 16px;
+}
+
+.label { 
+  font-weight: 600; 
+  margin-bottom: 6px; 
+  color: var(--fg);
+  display: block;
+}
+
+.input-group {
+  position: relative;
+}
+
+textarea {
+  width: 100%;
+  background: var(--card-bg);
+  color: var(--fg);
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  padding: 12px;
+  resize: vertical;
+  min-height: 120px;
+  font-family: var(--vscode-editor-font-family, 'Consolas', monospace);
+  font-size: 13px;
+  transition: all 0.2s ease;
+  box-shadow: var(--shadow);
+}
+
+textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px rgba(0, 122, 204, 0.2);
+}
+
+textarea::placeholder {
+  color: rgba(204, 204, 204, 0.5);
+}
+
+.row { 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+  gap: 8px;
+  flex-wrap: wrap;
+  min-width: 0;
+}
+
+.toggle { 
+  display: flex; 
+  gap: 12px; 
+  align-items: center;
+  background: var(--card-bg);
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  flex-shrink: 1;
+  min-width: 0;
+}
+
+.toggle label { 
+  display: flex; 
+  gap: 4px; 
+  align-items: center;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 12px;
+  transition: color 0.2s ease;
+  white-space: nowrap;
+}
+
+.toggle label:hover {
+  color: var(--accent);
+}
+
+.toggle input[type="radio"] {
+  accent-color: var(--accent);
+}
+
+button {
+  background: linear-gradient(135deg, var(--button-bg), var(--button-hover));
+  color: var(--button-fg);
+  border: none;
+  border-radius: 8px;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 12px;
+  transition: all 0.2s ease;
+  box-shadow: var(--shadow);
+  min-width: 80px;
+  flex-shrink: 0;
+}
+
+button:hover {
+  background: linear-gradient(135deg, var(--button-hover), var(--accent));
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 122, 204, 0.3);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+#btnPromptize {
+  background: linear-gradient(135deg, var(--success), #66bb6a);
+  flex-shrink: 0;
+}
+
+#btnPromptize:hover:not(:disabled) {
+  background: linear-gradient(135deg, #66bb6a, #4caf50);
+}
+
+/* Custom Prompt Section */
+.custom-prompt-section {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px;
+  margin: 8px 0;
+}
+
+.custom-prompt-header {
+  margin-bottom: 8px;
+}
+
+.custom-prompt-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 13px;
+  transition: color 0.2s ease;
+}
+
+.custom-prompt-toggle:hover {
+  color: var(--accent);
+}
+
+.custom-prompt-toggle input[type="checkbox"] {
+  accent-color: var(--accent);
+  transform: scale(1.1);
+}
+
+.custom-prompt-area {
+  margin-top: 12px;
+  transition: all 0.3s ease;
+}
+
+.custom-prompt-textarea {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.2);
+  color: var(--fg);
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  padding: 12px;
+  resize: vertical;
+  min-height: 120px;
+  font-family: var(--vscode-editor-font-family, 'Consolas', monospace);
+  font-size: 12px;
+  line-height: 1.4;
+  transition: all 0.2s ease;
+}
+
+.custom-prompt-textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px rgba(0, 122, 204, 0.2);
+}
+
+.custom-prompt-textarea::placeholder {
+  color: rgba(204, 204, 204, 0.5);
+  font-style: italic;
+}
+
+.prompt-hint {
+  color: rgba(204, 204, 204, 0.6);
+  font-size: 11px;
+  margin-top: 6px;
+  font-style: italic;
+}
+
+.output {
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: var(--card-bg);
+  box-shadow: var(--shadow);
+  transition: all 0.3s ease;
+}
+
+.output:has(.output-text:not(:empty)) {
+  border-color: var(--success);
+  background: rgba(76, 175, 80, 0.05);
+}
+
+.output-header { 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.output-header span {
+  font-weight: 600;
+  color: var(--accent);
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.actions { 
+  display: flex; 
+  gap: 8px; 
+  flex-wrap: nowrap;
+  align-items: center;
+}
+
+.actions button {
+  padding: 6px 12px;
+  font-size: 12px;
+  min-width: 60px;
+  flex-shrink: 0;
+}
+
+#btnCopy {
+  background: linear-gradient(135deg, var(--accent), #1177bb);
+}
+
+#btnClear {
+  background: linear-gradient(135deg, var(--warning), #ffb74d);
+}
+
+.output-text {
+  white-space: pre-wrap;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 16px;
+  border-radius: 8px;
+  min-height: 100px;
+  font-family: var(--vscode-editor-font-family, 'Consolas', monospace);
+  font-size: 12px;
+  line-height: 1.5;
+  transition: all 0.3s ease;
+  overflow-wrap: break-word;
+}
+
+.output-text:empty::before {
+  content: "Generated content will appear here...";
+  color: rgba(204, 204, 204, 0.4);
+  font-style: italic;
+}
+
+.hint { 
+  color: rgba(204, 204, 204, 0.6); 
+  font-size: 11px; 
+  text-align: center;
+  font-style: italic;
+  padding: 8px;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 6px;
+}
+
+/* Loading indicator with enhanced animations */
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 500;
+  padding: 16px;
+  background: var(--card-bg);
+  border-radius: 8px;
+  border: 1px solid var(--accent);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.spinner {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 3px solid rgba(0, 122, 204, 0.2);
+  border-top-color: var(--accent);
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin { 
+  from { transform: rotate(0deg); } 
+  to { transform: rotate(360deg); } 
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+/* Error states */
+.error {
+  color: var(--error);
+  background: rgba(244, 67, 54, 0.1);
+  border: 1px solid var(--error);
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 12px;
+  margin: 8px 0;
+}
+
+/* Success states */
+.success {
+  color: var(--success);
+  background: rgba(76, 175, 80, 0.1);
+  border: 1px solid var(--success);
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 12px;
+  margin: 8px 0;
+}
+
+/* Responsive design for different sidebar widths */
+@media (max-width: 400px) {
+  body {
+    padding: 6px;
+  }
+  
+  .container {
+    gap: 8px;
+  }
+  
+  .row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 6px;
+  }
+  
+  .toggle {
+    justify-content: center;
+    gap: 8px;
+    padding: 4px 8px;
+  }
+  
+  .toggle label {
+    font-size: 11px;
+  }
+  
+  button {
+    width: 100%;
+    padding: 6px 12px;
+    font-size: 11px;
+    min-width: auto;
+  }
+}
+
+@media (max-width: 250px) {
+  .toggle {
+    flex-direction: column;
+    gap: 4px;
+  }
+  
+  h2 {
+    font-size: 14px;
+  }
+  
+  h2::before {
+    font-size: 12px;
+  }
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
+}
