@@ -1,0 +1,87 @@
+{
+  "name": "promptisr",
+  "displayName": "Promptisr - VibeCoder Prompt Engineer",
+  "description": "Transform your ideas into powerful coding prompts. VibeCoder's intelligent prompt engineering for enhanced development workflow.",
+  "version": "1.0.0",
+  "publisher": "kushal-raj-g-s",
+  "keywords": [
+    "prompt",
+    "ai",
+    "coding",
+    "development",
+    "productivity",
+    "prompt engineering",
+    "vibe coder"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Kushal-Raj-G-S/promptisr-copilot"
+  },
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Other",
+    "Machine Learning",
+    "Snippets"
+  ],
+  "icon": "media/logo.png",
+  "activationEvents": [],
+  "main": "./out/extension.js",
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "promptisr",
+          "title": "Promptisr",
+          "icon": "media/icon.png"
+        }
+      ]
+    },
+    "views": {
+      "promptisr": [
+        {
+          "type": "webview",
+          "id": "promptisrSidebar",
+          "name": "Promptisr"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "promptisr.configureApiKey",
+        "title": "Promptisr: Configure API Key"
+      },
+      {
+        "command": "promptisr.configureBaseUrl",
+        "title": "Promptisr: Configure Base URL"
+      },
+      {
+        "command": "promptisr.selectModel",
+        "title": "Promptisr: Select Model"
+      },
+      {
+        "command": "promptisr.resetOnlineSettings",
+        "title": "Promptisr: Reset Online Settings"
+      },
+      {
+        "command": "promptisr.configureOnlineSettings",
+        "title": "Promptisr: Configure Online Settings"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "package": "vsce package",
+    "lint": "echo 'No linter configured'"
+  },
+  "devDependencies": {
+    "@types/node": "^18.19.0",
+    "@types/vscode": "^1.80.0",
+    "@vscode/vsce": "^3.6.0",
+    "typescript": "^5.4.0"
+  }
+}
